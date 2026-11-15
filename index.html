@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SI BASTARA - Bapas Muratara</title>
+
+  <!-- Pengaturan PWA & Fullscreen untuk iPhone (iOS) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SI BASTARA">
+  <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/1nE1L8OWGMy_8c2cyMQQfQxa0fB7hwr07">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f4f6f9;
+      background-image: url('https://lh3.googleusercontent.com/d/1V6Hyt3RQ4YCdH_ni8RtFuvmUGTnqMhDO');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Pembungkus agar tetap proporsional di layar lebar maupun HP */
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-bottom: 30px;
+    }
+
+    /* Header Banner Atas */
+    .header-banner {
+      width: 100%;
+      display: block;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Tombol Kembali untuk Halaman 2 & 3 */
+    .top-nav {
+      padding: 16px 20px 0 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .btn-back {
+      background: linear-gradient(135deg, #10496c 0%, #092c42 100%);
+      color: #ffffff;
+      border: 2px solid #e6c26b;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      transition: transform 0.15s ease;
+    }
+
+    .btn-back:active {
+      transform: scale(0.95);
+    }
+
+    /* Sistem Halaman */
+    .page {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Area Konten Menu */
+    .content-area {
+      width: 100%;
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .content-area.subpage {
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    /* Efek Tekan Tombol Gambar */
+    .img-btn {
+      display: block;
+      width: 100%;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+      text-decoration: none;
+    }
+
+    .img-btn:active {
+      transform: scale(0.95);
+    }
+
+    .img-btn img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Tombol Panjang Wajib Lapor */
+    .btn-wide {
+      max-width: 340px;
+      margin-bottom: 4px;
+    }
+
+    /* Susunan Kotak 2x2 */
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      width: 100%;
+      max-width: 350px;
+    }
+
+    /* Tombol Tunggal di Tengah Bawah (Permintaan Litmas) */
+    .single-center {
+      width: 48%;
+      max-width: 166px;
+    }
+
+    /* Bagian Media Sosial */
+    .sosmed-section {
+      margin-top: 12px;
+      width: 100%;
+      max-width: 340px;
+      text-align: center;
+    }
+
+    .sosmed-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #2c3e50;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .sosmed-title::before,
+    .sosmed-title::after {
+      content: "";
+      height: 1px;
+      width: 24px;
+      background-color: #d4af37;
+    }
+
+    .sosmed-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 0 8px;
+    }
+
+    .sosmed-btn {
+      width: 56px;
+      height: 56px;
+      display: block;
+      transition: transform 0.15s ease;
+    }
+
+    .sosmed-btn:active {
+      transform: scale(0.92);
+    }
+
+    .sosmed-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- ================= HALAMAN 1: HALAMAN AWAL ================= -->
+    <div id="page-home" class="page active">
+      <img src="https://lh3.googleusercontent.com/d/1nE1L8OWGMy_8c2cyMQQfQxa0fB7hwr07" alt="Header SI BASTARA" class="header-banner">
+
+      <div class="content-area">
+        <!-- Wajib Lapor Online -->
+        <a href="https://script.google.com/macros/s/AKfycbwmIgkRrY6S8q2QJCOeK3xPJY83TykHTQoSigv9m_fWHqrHd1Ma5UxwAYzKBB3tP3A8/exec" class="img-btn btn-wide">
+          <img src="https://lh3.googleusercontent.com/d/14jUiWm6chswAmRMohf4VIOLcvVpH-VrU" alt="Wajib Lapor Online">
+        </a>
+
+        <!-- Grid 2x2 Menu Utama -->
+        <div class="grid-2x2">
+          <!-- Hubungi Kami -->
+          <a href="https://wa.me/62811792332?text=Halo%20Bapas%20Muratara!" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1_4Z0xsSlkULYzTuDCrQn2u1ZfpidIjWx" alt="Hubungi Kami">
+          </a>
+
+          <!-- Informasi Litmas -->
+          <a href="https://script.google.com/macros/s/AKfycbw2ZCTsJjjpvtVs7J_edhqKK2Uc46SiYEeilEgEgCMI4faggv7GnitPLDVS5jb_sFwW/exec" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1jd99DcWmpNmbDwR07MAAX6FMMjWwFO3r" alt="Informasi Litmas">
+          </a>
+
+          <!-- Menu Petugas (Pindah ke Halaman 2) -->
+          <div onclick="bukaHalaman('page-petugas')" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1oHPjs-ttjl4VBCZPzARzgBczzdYrFxZX" alt="Menu Petugas">
+          </div>
+
+          <!-- Alur Pelayanan -->
+          <a href="https://script.google.com/macros/s/AKfycbzgrE5SGKk_Yi3kVxgM3X8FmdVa0XRAjredXVVe_-MTbLGAk_cI_dV3XghmGb1lZYedAg/exec" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1HaV0wEFW6fxzOsdKmr8trhm0tM8qH255" alt="Alur Pelayanan">
+          </a>
+        </div>
+
+        <!-- Media Sosial -->
+        <div class="sosmed-section">
+          <div class="sosmed-title">Ikuti Media Sosial Kami</div>
+          <div class="sosmed-row">
+            <a href="https://www.instagram.com/bapasmuratara" class="sosmed-btn">
+              <img src="https://lh3.googleusercontent.com/d/15XoqNglcOcfXgJJVOX6QU1Iww9Q1eT6L" alt="Instagram">
+            </a>
+            <a href="https://x.com/BapasMuratara" class="sosmed-btn">
+              <img src="https://lh3.googleusercontent.com/d/1PLJb7ywal-AFopCfazA08RhXJrUTPV3o" alt="X">
+            </a>
+            <a href="https://www.facebook.com/share/1EZjSupFeV/" class="sosmed-btn">
+              <img src="https://lh3.googleusercontent.com/d/1Vb-H6erO0z79jSE-x3vlakt707lMA6aZ" alt="Facebook">
+            </a>
+            <a href="https://www.kompasiana.com/bapasmuratara3902" class="sosmed-btn">
+              <img src="https://lh3.googleusercontent.com/d/1Dm-cqhEW_ynJsXZetN5Z5n2lYCgrMC0m" alt="Kompasiana">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= HALAMAN 2: MENU PETUGAS ================= -->
+    <div id="page-petugas" class="page">
+      <div class="top-nav" style="width: 100%;">
+        <button class="btn-back" onclick="bukaHalaman('page-home')">&#8592; Kembali</button>
+      </div>
+
+      <div class="content-area subpage">
+        <div class="grid-2x2">
+          <!-- Dashboard Klien -->
+          <a href="https://script.google.com/macros/s/AKfycbx_gDD0CeCQRInjd7EpbhSA7t6KK_N6naSHP8FHlfexgtVENcJrXIoLTWYrC7mAu4Hu/exec" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1gMVmUkkR748T7JC6I2R4uhnLnBgeHpFQ" alt="Dashboard Klien">
+          </a>
+
+          <!-- E-Kontrol Klien -->
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdipJo0r0JZbyS5U9_ZJukVFeJ8YsJaZ_i0DyRTVHAC8Y6i_w/viewform?usp=sharing&ouid=101492770402913671842" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1ZAbtMablxHHeAlMZUa4Y_LdMh4zd4wVA" alt="E-Kontrol Klien">
+          </a>
+
+          <!-- Permintaan Pendampingan ABH -->
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe6J-S7BX6kbOvShlsqhZ-sdpXcksviieijHng01COIkZawPA/viewform?usp=dialog" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1u_unYzrChPzq5yMzefepYd19JVnsghSg" alt="Permintaan Pendampingan ABH">
+          </a>
+
+          <!-- Permintaan Pendampingan Klien Dewasa -->
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSew4RCc5iSL2cPqJnrb-fs_gudVDbzuAcercn72aeadV5UXsQ/viewform?usp=dialog" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1Q88Vc7IP9ntMcm9xg4pQfkVRHM6ANqBW" alt="Permintaan Pendampingan Klien Dewasa">
+          </a>
+        </div>
+
+        <!-- Permintaan Litmas (Pindah ke Halaman 3) -->
+        <div class="single-center">
+          <div onclick="bukaHalaman('page-litmas')" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1m0In6pNi3Q5ZKJAp3Hzv3KIwBU8qdMdN" alt="Permintaan Litmas">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= HALAMAN 3: PERMINTAAN LITMAS ================= -->
+    <div id="page-litmas" class="page">
+      <div class="top-nav" style="width: 100%;">
+        <button class="btn-back" onclick="bukaHalaman('page-petugas')">&#8592; Kembali</button>
+      </div>
+
+      <div class="content-area subpage">
+        <div class="grid-2x2">
+          <!-- Lapas Lubuklinggau -->
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKTqadBGYf_hoggxuthDjgB8HANNlMwO7rrtnAQ_pwpylIJA/viewform?usp=dialog" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1E8IMy4xwzppUvrgNdXfBHY1HFa2npGl2" alt="Lapas Lubuklinggau">
+          </a>
+
+          <!-- Lapas Narkotika Muara Beliti -->
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSf0muLA4nULiCEnb5zdHLHgdE_l6ZusTJmSXoNMNLd2f8qvMg/viewform?usp=dialog" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1hrXjqokg0YXMpbcknakPCgUZsA8m2Znu" alt="Lapas Narkotika Muara Beliti">
+          </a>
+
+          <!-- Lapas Surulangun Rawas -->
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkWbaPzWVRorPUWEQp_GntMyTO30jxSdNcLXqBcPl_5fWZeg/viewform?usp=dialog" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1GGLBY6OjHfBJPlR9F9LGRp60WXQfVNAm" alt="Lapas Surulangun Rawas">
+          </a>
+
+          <!-- Limpah -->
+          <a href="mailto:bapasmuratara@gmail.com" class="img-btn">
+            <img src="https://lh3.googleusercontent.com/d/1Myk3DkQb6InlxbVD86GLPZZt3KD1HD3-" alt="Limpah">
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function bukaHalaman(idHalaman) {
+      // Sembunyikan semua halaman
+      const semuaHalaman = document.querySelectorAll('.page');
+      semuaHalaman.forEach(halaman => halaman.classList.remove('active'));
+
+      // Tampilkan halaman yang diklik
+      document.getElementById(idHalaman).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  </script>
+
+</body>
+</html>
