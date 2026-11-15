@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Aplikasi SI BASTARA - Bapas Muratara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f2942;
+      --accent: #1d4ed8;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #0f2942 0%, #1e3a8a 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      background: var(--card);
+      width: 100%;
+      max-width: 420px;
+      border-radius: 24px;
+      padding: 32px 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      text-align: center;
+    }
+    .logo {
+      width: 84px;
+      height: 84px;
+      border-radius: 20px;
+      object-fit: cover;
+      margin: 0 auto 16px;
+      box-shadow: 0 8px 16px rgba(15, 41, 66, 0.15);
+      background: #e2e8f0;
+    }
+    h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 4px;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+    .btn-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      padding: 14px 18px;
+      border-radius: 16px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      text-align: left;
+      border: 1.5px solid transparent;
+    }
+    .btn:active { transform: scale(0.98); }
+    
+    /* Tombol 1: Google Play */
+    .btn-playstore {
+      background: #0f2942;
+      color: #ffffff;
+      box-shadow: 0 6px 14px rgba(15, 41, 66, 0.2);
+    }
+    .btn-playstore.disabled {
+      background: #e2e8f0;
+      color: #64748b;
+      pointer-events: none;
+      box-shadow: none;
+    }
+    
+    /* Tombol 2: APK Google Drive */
+    .btn-apk {
+      background: #eff6ff;
+      color: #1e3a8a;
+      border-color: #bfdbfe;
+    }
+    
+    /* Tombol 3: Web / iOS PWA */
+    .btn-pwa {
+      background: #f8fafc;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+
+    .icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.25rem;
+    }
+    .btn-playstore .icon-box { background: rgba(255,255,255,0.12); }
+    .btn-playstore.disabled .icon-box { background: rgba(0,0,0,0.06); }
+    .btn-apk .icon-box { background: #dbeafe; }
+    .btn-pwa .icon-box { background: #e2e8f0; }
+
+    .btn-text { flex: 1; }
+    .btn-title {
+      display: block;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .btn-desc {
+      display: block;
+      font-size: 0.75rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+    .badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 99px;
+      background: #cbd5e1;
+      color: #334155;
+      text-transform: uppercase;
+    }
+    .footer {
+      margin-top: 26px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Ganti src dengan path file icon SI BASTARA di repo GitHub kamu -->
+    <img id="appLogo" src="icon-192.png" alt="Logo SI BASTARA" class="logo" onerror="this.style.display='none'">
+    
+    <h1>SI BASTARA</h1>
+    <p class="subtitle">Sistem Layanan & Pelaporan Klien<br>Balai Pemasyarakatan Kelas II Musi Rawas Utara</p>
+
+    <div class="btn-list">
+      <!-- 1. GOOGLE PLAY STORE -->
+      <a id="linkPlaystore" href="#" target="_blank" class="btn btn-playstore">
+        <div class="icon-box">▶</div>
+        <div class="btn-text">
+          <span class="btn-title">Google Play Store</span>
+          <span id="descPlaystore" class="btn-desc">Install resmi untuk HP Android</span>
+        </div>
+        <span id="badgePlaystore" class="badge" style="display:none;">Segera</span>
+      </a>
+
+      <!-- 2. DOWNLOAD APK GOOGLE DRIVE -->
+      <a id="linkApk" href="#" target="_blank" class="btn btn-apk">
+        <div class="icon-box">📥</div>
+        <div class="btn-text">
+          <span class="btn-title">Download File APK (Android)</span>
+          <span id="descApk" class="btn-desc">Versi 1.0 • Via Google Drive</span>
+        </div>
+      </a>
+
+      <!-- 3. VERSI WEB / IPHONE (PWA) -->
+      <a id="linkPwa" href="https://joshtmg.github.io/sibastara/" class="btn btn-pwa">
+        <div class="icon-box">🌐</div>
+        <div class="btn-text">
+          <span class="btn-title">Buka Versi Web / iPhone (iOS)</span>
+          <span class="btn-desc">Tanpa install • Bisa ditambah ke layar utama</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="footer">
+      Bapas Kelas II Musi Rawas Utara • Kementerian Imigrasi dan Pemasyarakatan
+    </div>
+  </div>
+
+  <!-- =========================================================
+       PANEL PENGATURAN LINK (CUKUP EDIT BAGIAN INI SAJA)
+       ========================================================= -->
+  <script>
+    const CONFIG = {
+      // 1. Pengaturan Google Play Store
+      playstoreAktif: false, // Ubah jadi true kalau akun Play Console & aplikasi sudah rilis
+      playstoreUrl: "https://play.google.com/store/apps/details?id=com.bapasmuratara.sibastara",
+
+      // 2. Pengaturan APK Google Drive (Ganti link & nomor versi setiap ada update APK)
+      apkUrl: "https://drive.google.com/file/d/GANTI_DENGAN_ID_FILE_APK_KAMU/view?usp=sharing",
+      apkVersi: "Versi 1.0 • Via Google Drive",
+
+      // 3. Pengaturan PWA / Web
+      pwaUrl: "https://joshtmg.github.io/sibastara/"
+    };
+
+    // Terapkan konfigurasi ke tombol secara otomatis
+    const btnPlay = document.getElementById("linkPlaystore");
+    const descPlay = document.getElementById("descPlaystore");
+    const badgePlay = document.getElementById("badgePlaystore");
+
+    if (CONFIG.playstoreAktif) {
+      btnPlay.href = CONFIG.playstoreUrl;
+    } else {
+      btnPlay.classList.add("disabled");
+      descPlay.textContent = "Dalam proses verifikasi Google Play";
+      badgePlay.style.display = "inline-block";
+    }
+
+    document.getElementById("linkApk").href = CONFIG.apkUrl;
+    document.getElementById("descApk").textContent = CONFIG.apkVersi;
+    document.getElementById("linkPwa").href = CONFIG.pwaUrl;
+  </script>
+
+</body>
+</html>
