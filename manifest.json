@@ -1,17 +1,17 @@
 {
-  "name": "SI BASTARA - Bapas Muratara",
+  "name": "SI BASTARA - Smart Client Service",
   "short_name": "SI BASTARA",
   "start_url": "/sibastara/",
   "scope": "/sibastara/",
   "display": "standalone",
-  "background_color": "#0d3b56",
-  "theme_color": "#10496c",
+  "background_color": "#123c52",
+  "theme_color": "#123c52",
   "icons": [
     {
       "src": "https://lh3.googleusercontent.com/d/1MuufSNQfypn9OVJ2E2XKPPvQb5CJrwJZ",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }
