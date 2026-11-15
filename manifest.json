@@ -1,0 +1,16 @@
+{
+  "name": "SI BASTARA - Bapas Muratara",
+  "short_name": "SI BASTARA",
+  "start_url": "/sibastara/",
+  "scope": "/sibastara/",
+  "display": "standalone",
+  "background_color": "#f4f6f9",
+  "theme_color": "#10496c",
+  "icons": [
+    {
+      "src": "https://lh3.googleusercontent.com/d/1nE1L8OWGMy_8c2cyMQQfQxa0fB7hwr07",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
